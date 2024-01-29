@@ -129,14 +129,14 @@
 #ifdef RPL_CONF_WITH_MC
 #define RPL_WITH_MC RPL_CONF_WITH_MC
 #else /* RPL_CONF_WITH_MC */
-#define RPL_WITH_MC 0
+#define RPL_WITH_MC 1
 #endif /* RPL_CONF_WITH_MC */
 
 /* The MC advertised in DIOs and propagating from the root. */
 #ifdef RPL_CONF_DAG_MC
 #define RPL_DAG_MC RPL_CONF_DAG_MC
 #else
-#define RPL_DAG_MC RPL_DAG_MC_NONE
+#define RPL_DAG_MC RPL_DAG_MC_ETX
 #endif /* RPL_CONF_DAG_MC */
 
 /* This value decides which DAG instance we should participate in by default. */
