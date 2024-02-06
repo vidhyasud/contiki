@@ -1,0 +1,10 @@
+**/*.classpath
+**/*.cooja
+**/*.project
+
+run/
+target/
+
+*/build
+*prefs
+
