@@ -113,8 +113,8 @@ def parseLine(line):
 
     #print(res)
     res = line.split('\t')
-    #print(res[0])
-    #print(res[1].split(":")[1])
+    # print(res[0])
+    # print(res[1].split(":")[1])
 
 
     sub = res[2]
@@ -129,9 +129,9 @@ def parseLine(line):
      
 
 
-    #print(level)
-    #print(module)
-    #print(message_raw)
+    # print(level)
+    # print(module)
+    # print(message_raw)
 
     if res:
 
@@ -147,8 +147,6 @@ def parseLine(line):
         level = level
         module = module
         log = message_raw
-
-
         return time, nodeid, level, module, log
     return None, None, None, None, None
 
@@ -176,7 +174,8 @@ def doParse(file):
         # match time, id, module, log; The common format for all log lines
         time, nodeid, level, module, log = parseLine(line)
 
-        print(f"{time}|{nodeid}|{level}|{module}|{log}")
+        #print(f"{time}-{nodeid}-{level}-{module}")
+        print(log)
 
         if time == None:
             print("malformed")

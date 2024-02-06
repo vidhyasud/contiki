@@ -40,7 +40,11 @@
 #include "lib/list.h"
 #include "net/nbr-table.h"
 
+<<<<<<< HEAD
 #define DEBUG 1
+=======
+#define DEBUG LOG_LEVEL_RPL
+>>>>>>> de7efe2a3 (location changes)
 #include "net/ipv6/uip-debug.h"
 
 #if DEBUG
@@ -523,11 +527,14 @@ print_table()
   PRINTF("NBR TABLE:\n");
   for(i = 0; i < NBR_TABLE_MAX_NEIGHBORS; i++) {
     if(used_map[i] > 0) {
-      PRINTF(" %02d %02d",i , key_from_index(i)->lladdr.u8[LINKADDR_SIZE - 1]);
-      for(j = 0; j < num_tables; j++) {
-        PRINTF(" [%d:%d]", (used_map[i] & (1 << j)) != 0,
-               (locked_map[i] & (1 << j)) != 0);
-      }
+      //PRINTF(" %02d %02d",i , key_from_index(i)->lladdr.u8[LINKADDR_SIZE - 1]);
+      PRINTLLADDR( key_from_index(i)->lladdr);
+
+      // for(j = 0; j < num_tables; j++) {
+      //   PRINTF(" [%d:%d]", (used_map[i] & (1 << j)) != 0,
+      //          (locked_map[i] & (1 << j)) != 0);
+      // }
+      ;
       PRINTF("\n");
     }
   }

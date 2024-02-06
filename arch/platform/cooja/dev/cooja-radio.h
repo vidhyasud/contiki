@@ -50,6 +50,10 @@
 
 extern const struct radio_driver cooja_radio_driver;
 
+extern int simLastLQI ;
+extern int simLastSignalStrength ;
+
+
 /**
  * Set radio channel.
  */

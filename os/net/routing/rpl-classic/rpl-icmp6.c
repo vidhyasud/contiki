@@ -52,6 +52,8 @@
 #include "net/packetbuf.h"
 #include "net/ipv6/multicast/uip-mcast6.h"
 #include "lib/random.h"
+#include "cooja-radio.h"
+#include "moteid.h"
 
 #include "sys/log.h"
 
@@ -331,7 +333,12 @@ dio_input(void)
 
   dio.dtsn = buffer[i++];
   /* two reserved bytes */
-  i += 2;
+  //i += 2;
+
+  LOG_INFO("localtion x = %d,",buffer[i++]);
+  LOG_INFO_("y = %d\n",buffer[i++]);
+
+
 
   memcpy(&dio.dag_id, buffer + i, sizeof(dio.dag_id));
   i += sizeof(dio.dag_id);
@@ -539,8 +546,11 @@ dio_output(rpl_instance_t *instance, uip_ipaddr_t *uc_addr)
   }
 
   /* reserved 2 bytes */
-  buffer[pos++] = 0; /* flags */
-  buffer[pos++] = 0; /* reserved */
+  //buffer[pos++] = 0; /* flags */
+  //buffer[pos++] = 0; /* reserved */
+
+  buffer[pos++] = node_loc_x;
+  buffer[pos++] = node_loc_y;
 
   memcpy(buffer + pos, &dag->dag_id, sizeof(dag->dag_id));
   pos += 16;
