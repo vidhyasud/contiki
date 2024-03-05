@@ -36,4 +36,7 @@ extern int simMoteID;
 extern int node_loc_x;
 extern int node_loc_y;
 
+extern int pl;
+
+
 #endif /* MOTEID_H_ */

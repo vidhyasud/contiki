@@ -41,6 +41,9 @@ int simRandomSeed;
 
 int node_loc_x = 0;
 int node_loc_y = 0;
+int pl = 4;
+
+
 
 /*-----------------------------------------------------------------------------------*/
 static void

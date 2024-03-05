@@ -32,5 +32,5 @@
 /* Save some RAM and ROM */
 #define QUEUEBUF_CONF_NUM              4
 #define UIP_CONF_BUFFER_SIZE         140
-#define BORDER_ROUTER_CONF_WEBSERVER   0
+#define BORDER_ROUTER_CONF_WEBSERVER   1
 /*---------------------------------------------------------------------------*/

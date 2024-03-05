@@ -63,7 +63,7 @@ void net_debug_lladdr_print(const uip_lladdr_t *addr);
 #endif /* (DEBUG) & DEBUG_ANNOTATE */
 
 #if (DEBUG) & DEBUG_PRINT
-#define PRINTF(...) printf(__VA_ARGS__)
+//#define PRINTF(...) printf(__VA_ARGS__)
 #define PRINTLLADDR(lladdr) net_debug_lladdr_print(lladdr)
 #else
 #define PRINTF(...)

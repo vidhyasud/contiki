@@ -55,10 +55,22 @@
 #include "cooja-radio.h"
 #include "moteid.h"
 
+// #include "cc2420.h"
+// #include "cc2420_const.h"
+// #include "node-id-z1.h"
+
 #include "sys/log.h"
 
 #include <limits.h>
 #include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+
+#include "net/packetbuf.h"
+
+
+
 
 #define LOG_MODULE "RPL"
 #define LOG_LEVEL LOG_LEVEL_INFO
@@ -291,6 +303,12 @@ dio_input(void)
   int i;
   int len;
   uip_ipaddr_t from;
+  int loc_x,loc_y;
+  int rssi,lqi,distance_current;
+  //int rssi_offset;
+  int power_level_assessed;
+  signed short last_rssi;
+
 
   memset(&dio, 0, sizeof(dio));
 
@@ -335,9 +353,46 @@ dio_input(void)
   /* two reserved bytes */
   //i += 2;
 
-  LOG_INFO("localtion x = %d,",buffer[i++]);
-  LOG_INFO_("y = %d\n",buffer[i++]);
+  loc_x = buffer[i++];
+  loc_y = buffer[i++];
 
+  LOG_INFO("localtion x = %d,",loc_x);
+  LOG_INFO_("y = %d\n",loc_y);
+
+
+  //rssi_offset=-45;
+  last_rssi = (signed short)packetbuf_attr(PACKETBUF_ATTR_RSSI);
+  // rssi=packetbuf_attr(PACKETBUF_ATTR_RSSI) ;
+  // lqi =packetbuf_attr(PACKETBUF_ATTR_LINK_QUALITY);
+
+  rssi = radio_signal_strength_last();
+  lqi = simLastLQI;
+
+  distance_current = sqrt(((loc_x-node_loc_x)*(loc_x-node_loc_x))+((loc_y-node_loc_y)*(loc_y-node_loc_y)));
+  LOG_INFO("Nbr distance calculated  = %d\n",distance_current);
+
+  if (distance_current < 15)
+    power_level_assessed = 1;
+  else if (distance_current >= 15&& distance_current < 30) 
+    power_level_assessed = 2;
+  else if (distance_current >= 30&& distance_current < 45) 
+    power_level_assessed = 3;  
+  else 
+    power_level_assessed = 4;
+
+  pl =power_level_assessed;
+
+  //srand(time(NULL));
+  // Setting power level 
+  //pl = (rand() % (4 - 1 + 1)) + 1; 
+
+  //pl = rssi*lqi;
+
+  //pl = 4;
+
+  LOG_INFO("#code123 distance,RSSI,POWERLevel = %d,%d,%d\n",distance_current,rssi,pl);
+  rssi = last_rssi;
+  last_rssi +=lqi;
 
 
   memcpy(&dio.dag_id, buffer + i, sizeof(dio.dag_id));
@@ -546,8 +601,8 @@ dio_output(rpl_instance_t *instance, uip_ipaddr_t *uc_addr)
   }
 
   /* reserved 2 bytes */
-  //buffer[pos++] = 0; /* flags */
-  //buffer[pos++] = 0; /* reserved */
+  // buffer[pos++] = 0; /* flags */
+  // buffer[pos++] = 0; /* reserved */
 
   buffer[pos++] = node_loc_x;
   buffer[pos++] = node_loc_y;

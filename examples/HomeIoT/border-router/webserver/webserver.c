@@ -39,6 +39,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "sys/log.h"
+#define LOG_MODULE "Webserver"
+#define LOG_LEVEL LOG_LEVEL_APP
+
 /*---------------------------------------------------------------------------*/
 static const char *TOP = "<html>\n  <head>\n    <title>Contiki-NG</title>\n  </head>\n<body>\n";
 static const char *BOTTOM = "\n</body>\n</html>\n";
@@ -85,6 +89,7 @@ static
 PT_THREAD(generate_routes(struct httpd_state *s))
 {
   static uip_ds6_nbr_t *nbr;
+  int *pl ;
 
   PSOCK_BEGIN(&s->sout);
   SEND_STRING(&s->sout, TOP);
@@ -95,7 +100,11 @@ PT_THREAD(generate_routes(struct httpd_state *s))
       nbr != NULL;
       nbr = uip_ds6_nbr_next(nbr)) {
     ADD("    <li>");
-    ipaddr_add(&nbr->ipaddr);
+    ipaddr_add(&nbr->ipaddr); 
+    pl = &nbr->power_level;
+
+    ADD(",power level = %ls",pl);
+    //LOG_INFO("Power level=%ls\n",&nbr->power_level);
     ADD("</li>\n");
     SEND(&s->sout);
   }
@@ -161,8 +170,10 @@ PROCESS_THREAD(webserver_nogui_process, ev, data)
   PROCESS_BEGIN();
 
   httpd_init();
+    LOG_INFO("Webserver started\n");
 
   while(1) {
+
     PROCESS_WAIT_EVENT_UNTIL(ev == tcpip_event);
     httpd_appcall(data);
   }

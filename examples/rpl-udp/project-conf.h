@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
  * Copyright (c) 2015, SICS Swedish ICT.
  * Copyright (c) 2017, University of Bristol - http://www.bristol.ac.uk
@@ -42,23 +41,14 @@
 /*******************************************************/
 
 /* Logging */
-#define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_INFO
-#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_WARN
-#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_WARN
-#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_WARN
+#define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_DBG
+#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_DBG
+#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_DBG
+#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_INFO
+#define LOG_CONF_LEVEL_MAC                         LOG_LEVEL_INFO
+#define LOG_CONF_LEVEL_MAC                         LOG_LEVEL_INFO
 #define LOG_CONF_LEVEL_MAC                         LOG_LEVEL_INFO
 
-#endif /* __PROJECT_CONF_H__ */
-=======
-#ifndef PROJECT_CONF_H_
-#define PROJECT_CONF_H_
-
-
-
-/* Logging */
-#define LOG_CONF_LEVEL_RPL LOG_LEVEL_DBG
-#define LOG_CONF_LEVEL_MAC LOG_LEVEL_WARN
-#define LOG_CONF_WITH_COMPACT_ADDR 1
 
 /* Provisioning */
 #define NETSTACK_MAX_ROUTE_ENTRIES 25
@@ -89,4 +79,3 @@
 #endif
 
 #endif /* PROJECT_CONF_H_ */
->>>>>>> de7efe2a3 (location changes)

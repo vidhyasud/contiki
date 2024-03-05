@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "csprng.h": "c"
+        "csprng.h": "c",
+        "moteid.h": "c"
     }
 }

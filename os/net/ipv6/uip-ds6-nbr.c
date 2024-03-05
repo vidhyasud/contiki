@@ -54,6 +54,8 @@
 #include "net/ipv6/uip-ds6-nbr.h"
 #include "net/ipv6/uip-nd6.h"
 #include "net/routing/routing.h"
+#include "moteid.h"
+
 
 #if UIP_DS6_NBR_MULTI_IPV6_ADDRS
 #include "lib/memb.h"
@@ -62,7 +64,7 @@
 /* Log configuration */
 #include "sys/log.h"
 #define LOG_MODULE "IPv6 Nbr"
-#define LOG_LEVEL LOG_LEVEL_IPV6
+#define LOG_LEVEL LOG_LEVEL_DBG
 
 #if BUILD_WITH_ORCHESTRA
 
@@ -212,11 +214,23 @@ uip_ds6_nbr_add(const uip_ipaddr_t *ipaddr, const uip_lladdr_t *lladdr,
     stimer_set(&nbr->sendns, 0);
     nbr->nscount = 0;
 #endif /* UIP_ND6_SEND_NS */
+    nbr->power_level = pl;
     LOG_INFO("Adding neighbor with ip addr ");
     LOG_INFO_6ADDR(ipaddr);
     LOG_INFO_(" link addr ");
     LOG_INFO_LLADDR((linkaddr_t*)lladdr);
-    LOG_INFO_(" state %u\n", state);
+    LOG_INFO_(" state %u ", state);
+    LOG_INFO_("setting power level to %d \n",nbr->power_level);
+    LOG_INFO_("------------------------------------ \n");
+    LOG_INFO_("current NBR table \n");
+    //for(nbr = uip_ds6_nbr_head(); nbr != NULL; nbr = uip_ds6_nbr_next(nbr)) {
+    for(nbr = nbr_table_head(ds6_neighbors);nbr != NULL;nbr = nbr_table_next(ds6_neighbors, nbr)){
+      LOG_INFO_(" addr ");
+      LOG_INFO_6ADDR(&nbr->ipaddr);
+      LOG_INFO_(" power level %d \n",nbr->power_level);
+    }
+    LOG_INFO_("------------------------------------ \n");
+
     NETSTACK_ROUTING.neighbor_state_changed(nbr);
     return nbr;
   } else {

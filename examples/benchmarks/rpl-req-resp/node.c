@@ -130,9 +130,10 @@ PROCESS_THREAD(app_process, ev, data)
     /* Setup a periodic timer that expires after 10 seconds. */
     etimer_set(&timer, CLOCK_SECOND * 10);
     /* Wait until all nodes have joined */
-    do {
-      PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
-      etimer_reset(&timer);
+    //do 
+    //{
+      // PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
+      // etimer_reset(&timer);
 
       if(deployment_node_count() > NETSTACK_MAX_ROUTE_ENTRIES) {
         LOG_WARN("Not enough routing entries for deployment: %u/%u\n",
@@ -140,7 +141,8 @@ PROCESS_THREAD(app_process, ev, data)
       }
       LOG_INFO("Node count: %u/%u\n", uip_sr_num_nodes(), deployment_node_count());
 
-    } while(uip_sr_num_nodes() < deployment_node_count());
+    //} 
+    //while(uip_sr_num_nodes() < deployment_node_count());
 
     /* Now start requesting nodes at random */
     etimer_set(&timer, SEND_INTERVAL);

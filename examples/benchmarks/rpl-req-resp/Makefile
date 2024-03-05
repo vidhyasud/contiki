@@ -8,6 +8,9 @@ MODULES_REL += ../testbeds
 
 CONTIKI = ../../..
 
+MAKE_ROUTING = MAKE_ROUTING_RPL_CLASSIC
+TARGET_LIBFILES = -lm
+
 include $(CONTIKI)/Makefile.dir-variables
 MODULES += $(CONTIKI_NG_SERVICES_DIR)/deployment
 MODULES += $(CONTIKI_NG_SERVICES_DIR)/simple-energest

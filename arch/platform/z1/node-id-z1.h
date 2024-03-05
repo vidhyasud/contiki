@@ -37,6 +37,9 @@
 
 #include <sys/node-id.h>
 
+extern unsigned short node_loc_x;
+extern unsigned short node_loc_y;
+
 void node_id_z1_restore(void);
 void node_id_z1_burn(uint16_t node_id);
 

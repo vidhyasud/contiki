@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simconf version="2023090101">
   <simulation>
-    <title>sample</title>
+    <title>rssi_trainer</title>
+    <speedlimit>20.0</speedlimit>
     <randomseed>123456</randomseed>
     <motedelay_us>1000000</motedelay_us>
     <radiomedium>
@@ -12,7 +13,7 @@
       <success_ratio_rx>1.0</success_ratio_rx>
     </radiomedium>
     <events>
-      <logoutput>4000000</logoutput>
+      <logoutput>40000</logoutput>
     </events>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
@@ -38,7 +39,7 @@
       <mote>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="70.65815736275961" y="13.539563795683895" />
+          <pos x="36.950276044062306" y="57.524819023573045" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.contikimote.interfaces.ContikiMoteID
@@ -48,7 +49,7 @@
     </motetype>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
-      <description>Client</description>
+      <description>client</description>
       <source>[CONFIG_DIR]/udp-client.c</source>
       <commands>$(MAKE) -j$(CPUS) udp-client.cooja TARGET=cooja</commands>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
@@ -70,33 +71,18 @@
       <mote>
         <interface_config>
           org.contikios.cooja.interfaces.Position
-          <pos x="36.35146918336831" y="25.305637763328406" />
+          <pos x="43.32661232574406" y="57.578887908544495" />
         </interface_config>
         <interface_config>
           org.contikios.cooja.contikimote.interfaces.ContikiMoteID
           <id>2</id>
         </interface_config>
       </mote>
-      <mote>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="21.752640260590333" y="78.66202436571578" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.contikimote.interfaces.ContikiMoteID
-          <id>3</id>
-        </interface_config>
-      </mote>
-      <mote>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="47.35273732778651" y="64.70610904891525" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.contikimote.interfaces.ContikiMoteID
-          <id>4</id>
-        </interface_config>
-      </mote>
+    </motetype>
+    <motetype>
+      org.contikios.cooja.motes.DisturberMoteType
+      <identifier>apptype670454894</identifier>
+      <description>Disturber Mote Type #apptype670454894</description>
     </motetype>
   </simulation>
   <plugin>
@@ -107,32 +93,30 @@
       <skin>org.contikios.cooja.plugins.skins.GridVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.TrafficVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.UDGMVisualizerSkin</skin>
-      <viewport>4.8300609619502355 0.0 0.0 4.8300609619502355 -29.17489303161307 -49.66964580409477</viewport>
+      <viewport>14.44512085953867 0.0 0.0 14.44512085953867 -161.67633329793256 -620.8434790076788</viewport>
     </plugin_config>
-    <bounds x="1" y="1" height="400" width="400" z="1" />
+    <bounds x="3" y="6" height="400" width="1200" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.LogListener
     <plugin_config>
-      <filter>setting power</filter>
+      <filter>#</filter>
       <formatted_time />
       <coloring />
     </plugin_config>
-    <bounds x="400" y="0" height="828" width="1214" />
+    <bounds x="622" y="-11" height="896" width="890" z="1" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.TimeLine
     <plugin_config>
       <mote>0</mote>
       <mote>1</mote>
-      <mote>2</mote>
-      <mote>3</mote>
       <showRadioRXTX />
       <showRadioHW />
       <showLEDs />
       <zoomfactor>500.0</zoomfactor>
     </plugin_config>
-    <bounds x="0" y="447" height="166" width="500" z="4" />
+    <bounds x="0" y="447" height="166" width="500" z="3" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.Notes
@@ -140,14 +124,6 @@
       <notes>Enter notes here</notes>
       <decorations>true</decorations>
     </plugin_config>
-    <bounds x="400" y="0" height="160" width="100" z="3" />
-  </plugin>
-  <plugin>
-    org.contikios.cooja.plugins.RadioLogger
-    <plugin_config>
-      <split>150</split>
-      <formatted_time />
-    </plugin_config>
-    <bounds x="189" y="716" height="300" width="984" z="2" />
+    <bounds x="400" y="0" height="160" width="100" z="2" />
   </plugin>
 </simconf>

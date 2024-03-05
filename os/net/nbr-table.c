@@ -40,11 +40,7 @@
 #include "lib/list.h"
 #include "net/nbr-table.h"
 
-<<<<<<< HEAD
-#define DEBUG 1
-=======
-#define DEBUG LOG_LEVEL_RPL
->>>>>>> de7efe2a3 (location changes)
+#define DEBUG 0
 #include "net/ipv6/uip-debug.h"
 
 #if DEBUG
@@ -519,22 +515,35 @@ nbr_table_key_next(const nbr_table_key_t *key)
 }
 /*---------------------------------------------------------------------------*/
 #if DEBUG
+static void print_addr(linkaddr_t lladdr)
+{
+  PRINTF(" ");
+  for(int i=0; i<LINKADDR_SIZE; i++) {
+     PRINTF("%04d.", lladdr.u8[i]);
+  }
+  PRINTF(" ");
+
+}
+
 static void
 print_table()
 {
-  int i, j;
+  int i; 
+ // int j;
   /* Printout all neighbors and which tables they are used in */
   PRINTF("NBR TABLE:\n");
   for(i = 0; i < NBR_TABLE_MAX_NEIGHBORS; i++) {
     if(used_map[i] > 0) {
-      //PRINTF(" %02d %02d",i , key_from_index(i)->lladdr.u8[LINKADDR_SIZE - 1]);
-      PRINTLLADDR( key_from_index(i)->lladdr);
+      PRINTF(" %02d %02d",i , key_from_index(i)->lladdr.u8[LINKADDR_SIZE - 1]);
+      print_addr(key_from_index(i)->lladdr);
+      // PRINTF(" %d",key_from_index(i)->pl );
+     // PRINTF("%d",key_from_index(i)->power_level);
+      //LOG_INFO_LLADDR(key_from_index(i)->lladdr);
 
       // for(j = 0; j < num_tables; j++) {
       //   PRINTF(" [%d:%d]", (used_map[i] & (1 << j)) != 0,
       //          (locked_map[i] & (1 << j)) != 0);
       // }
-      ;
       PRINTF("\n");
     }
   }

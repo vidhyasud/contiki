@@ -43,6 +43,10 @@
 #include <string.h>
 
 unsigned char node_mac[8];
+unsigned short node_loc_x = 0;
+unsigned short node_loc_y = 0;
+unsigned short pl;
+
 
 /*---------------------------------------------------------------------------*/
 void

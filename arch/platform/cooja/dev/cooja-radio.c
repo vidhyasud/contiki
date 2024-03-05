@@ -254,6 +254,8 @@ radio_send(const void *payload, unsigned short payload_len)
     ENERGEST_ON(ENERGEST_TYPE_TRANSMIT);
   }
 
+ // radio_set_txpower(pl*25)
+
 #if COOJA_SIMULATE_TURNAROUND
   simProcessRunValue = 1;
   cooja_mt_yield();

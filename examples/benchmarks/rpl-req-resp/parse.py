@@ -116,14 +116,23 @@ def parseLine(line):
     #print(res[0])
     #print(res[1].split(":")[1])
 
-
     sub = res[2]
     pat = re.compile(r'\[.*\]')
-    log_level_raw = pat.search(sub).group(0)
-    message_raw=sub.replace(log_level_raw,"").strip()
-    log_level_raw = log_level_raw.split(":")
-    level = log_level_raw[0].strip().replace('[',"")
-    module = log_level_raw[1].replace(']',"").strip()
+    result = pat.search(sub)
+    if result:
+        log_level_raw = pat.search(sub).group(0)
+        message_raw=sub.replace(log_level_raw,"").strip()
+        log_level_raw = log_level_raw.split(":")
+        level = log_level_raw[0].strip().replace('[',"")
+        module = log_level_raw[1].replace(']',"").strip()
+    else:
+        print("None in log lavel")
+        log_level_raw = None
+        message_raw=None
+        level = None
+        module = None
+    
+    
 
 
      
@@ -133,7 +142,7 @@ def parseLine(line):
     #print(module)
     #print(message_raw)
 
-    if res:
+    if res and result:
 
         try:
             time = float(res[0])
@@ -176,7 +185,7 @@ def doParse(file):
         # match time, id, module, log; The common format for all log lines
         time, nodeid, level, module, log = parseLine(line)
 
-        print(f"{time}|{nodeid}|{level}|{module}|{log}")
+      #  print(f"{time}|{nodeid}|{level}|{module}|{log}")
 
         if time == None:
             print("malformed")
@@ -191,6 +200,7 @@ def doParse(file):
             "timestamp": timedelta(milliseconds=time),
             "node": nodeid,
         }
+        print(module)
 
         try:
             if module == "App":

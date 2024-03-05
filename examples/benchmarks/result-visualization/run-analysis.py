@@ -12,7 +12,7 @@ PLOT_ALL_NODES = True
 
 ###########################################
 
-LOG_FILE = 'COOJA.testlog'
+LOG_FILE = 'loglistener.txt'
 
 COORDINATOR_ID = 1
 

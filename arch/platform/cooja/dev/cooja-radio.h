@@ -52,6 +52,8 @@ extern const struct radio_driver cooja_radio_driver;
 
 extern int simLastLQI ;
 extern int simLastSignalStrength ;
+extern char simPower;
+extern char predictedLevel;
 
 
 /**

@@ -127,7 +127,7 @@
       <skin>org.contikios.cooja.plugins.skins.UDGMVisualizerSkin</skin>
       <viewport>2.4250860844175466 0.0 0.0 2.4250860844175466 35.26895372864869 -46.9106236441515</viewport>
     </plugin_config>
-    <bounds x="1" y="1" height="400" width="400" z="2" />
+    <bounds x="1" y="1" height="400" width="400" z="1" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.LogListener
@@ -154,7 +154,7 @@
       <showLEDs />
       <zoomfactor>500.0</zoomfactor>
     </plugin_config>
-    <bounds x="0" y="709" height="263" width="1539" z="3" />
+    <bounds x="0" y="709" height="263" width="1539" z="2" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.LogListener
@@ -163,15 +163,6 @@
       <formatted_time />
       <coloring />
     </plugin_config>
-    <bounds x="400" y="160" height="240" width="1945" z="1" />
-  </plugin>
-  <plugin>
-    org.contikios.cooja.plugins.LogListener
-    <plugin_config>
-      <filter />
-      <formatted_time />
-      <coloring />
-    </plugin_config>
-    <bounds x="400" y="160" height="240" width="1945" />
+    <bounds x="470" y="2" height="418" width="1092" />
   </plugin>
 </simconf>

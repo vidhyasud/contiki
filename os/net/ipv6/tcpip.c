@@ -48,6 +48,9 @@
 #include "net/linkaddr.h"
 #include "net/routing/routing.h"
 
+//#include "cooja-radio.h"
+
+
 #include <string.h>
 
 /* Log configuration */
@@ -666,6 +669,10 @@ tcpip_ipv6_output(void)
   annotate_transmission(nexthop);
 
   nbr = uip_ds6_nbr_lookup(nexthop);
+
+  LOG_INFO("Selected hop power level = %d , Updating Xmission power to match this level\n",nbr->power_level);
+  //radio_set_txpower(nbr->power_level*25);
+
 
 #if UIP_ND6_AUTOFILL_NBR_CACHE
   if(nbr == NULL) {
