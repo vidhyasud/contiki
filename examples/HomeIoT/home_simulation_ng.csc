@@ -19,7 +19,7 @@
       </obstacles>
     </radiomedium>
     <events>
-      <logoutput>40000</logoutput>
+      <logoutput>40000000</logoutput>
     </events>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
@@ -255,16 +255,16 @@
       <skin>org.contikios.mrm.MRMVisualizerSkin</skin>
       <viewport>2.5733649275852066 0.0 0.0 2.5733649275852066 364.50819432025776 188.87105531931493</viewport>
     </plugin_config>
-    <bounds x="-1" y="3" height="596" width="503" z="4" />
+    <bounds x="-1" y="3" height="596" width="503" z="3" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.LogListener
     <plugin_config>
-      <filter />
+      <filter>addr</filter>
       <formatted_time />
       <coloring />
     </plugin_config>
-    <bounds x="1081" y="3" height="800" width="557" />
+    <bounds x="737" y="3" height="800" width="968" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.TimeLine
@@ -285,7 +285,7 @@
       <showLEDs />
       <zoomfactor>500.0</zoomfactor>
     </plugin_config>
-    <bounds x="0" y="800" height="166" width="1650" z="5" />
+    <bounds x="0" y="800" height="166" width="1650" z="4" />
   </plugin>
   <plugin>
     org.contikios.cooja.serialsocket.SerialSocketServer
@@ -294,7 +294,7 @@
       <port>60001</port>
       <bound>true</bound>
     </plugin_config>
-    <bounds x="2" y="601" height="116" width="362" z="2" />
+    <bounds x="2" y="601" height="116" width="362" z="1" />
   </plugin>
   <plugin>
     org.contikios.mrm.AreaViewer
@@ -317,14 +317,15 @@
       <back_height>100.0</back_height>
       <resolution>100</resolution>
     </plugin_config>
-    <bounds x="500" y="5" height="588" width="584" z="3" />
+    <bounds x="500" y="5" height="588" width="584" z="2" />
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.RadioLogger
     <plugin_config>
       <split>105</split>
       <formatted_time />
+      <analyzers name="6lowpan" />
     </plugin_config>
-    <bounds x="504" y="594" height="206" width="582" z="1" />
+    <bounds x="504" y="594" height="206" width="582" z="-1" minimized="true" />
   </plugin>
 </simconf>

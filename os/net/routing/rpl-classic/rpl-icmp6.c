@@ -378,7 +378,7 @@ dio_input(void)
   else if (distance_current >= 30&& distance_current < 45) 
     power_level_assessed = 3;  
   else 
-    power_level_assessed = 4;
+    power_level_assessed = 3;
 
   pl =power_level_assessed;
 

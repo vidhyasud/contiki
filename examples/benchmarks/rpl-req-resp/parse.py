@@ -118,6 +118,9 @@ def parseLine(line):
 
     sub = res[2]
     pat = re.compile(r'\[.*\]')
+    if not pat:
+        # handle registering device events
+        return None, None, None, None, None
     result = pat.search(sub)
     if result:
         log_level_raw = pat.search(sub).group(0)
